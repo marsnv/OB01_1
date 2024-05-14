@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import simpledialog
+
 class Task:
     def __init__(self, description, deadline, status="не выполнено"):
         self.description = description
@@ -7,7 +8,7 @@ class Task:
         self.status = status
 
     def create_task(self):
-        self.description = simpledialog.askstring("Создать заду", "Введите описание новой задачи")
+        self.description = simpledialog.askstring("Создать задачу", "Введите описание новой задачи")
         self.deadline = simpledialog.askstring("Создать задачу", "Введите срок выполнения в формате ДДММГГГГ")
         incomplete_tasks.append(self)
 
