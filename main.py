@@ -30,6 +30,23 @@ def load_tasks():
     except FileNotFoundError:
         pass
 
+def show_all_tasks():
+    listbox.delete(0, tk.END)
+    for task in incomplete_tasks:
+        listbox.insert(tk.END, f"{task.description} - {task.deadline} - {task.status}")
+
+def show_completed_tasks():
+    listbox.delete(0, tk.END)
+    for task in incomplete_tasks:
+        if task.status == "выполнено":
+            listbox.insert(tk.END, f"{task.description} - {task.deadline} - {task.status}")
+
+def show_incomplete_tasks():
+    listbox.delete(0, tk.END)
+    for task in incomplete_tasks:
+        if task.status == "не выполнено":
+            listbox.insert(tk.END, f"{task.description} - {task.deadline} - {task.status}")
+
 root = tk.Tk()
 root.title("Менеджер задач")
 root.geometry("600x400")
@@ -65,6 +82,15 @@ add_task_button.pack()
 
 complete_task_button = tk.Button(root, text="Отметить выполненную задачу", command=mark_task_completed)
 complete_task_button.pack()
+
+show_all_button = tk.Button(root, text="Все задачи", command=show_all_tasks)
+show_all_button.pack()
+
+show_completed_button = tk.Button(root, text="Выполненные задачи", command=show_completed_tasks)
+show_completed_button.pack()
+
+show_incomplete_button = tk.Button(root, text="Невыполненные задачи", command=show_incomplete_tasks)
+show_incomplete_button.pack()
 
 update_listbox()
 
